@@ -30,9 +30,14 @@ function getBook(req, res) {
 function postBook(req, res) {
     try {
         const newBook = req.body
-        insertBook(newBook)
-        res.status(201)
-        res.send("The book was successfully registered.")
+        if(req.body.name) {
+            insertBook(newBook)
+            res.status(201)
+            res.send("The book was successfully registered.")
+        } else {
+            res.status(422)
+            res.send("The name is required.")
+        }
     } catch(error) {
         res.status(500)
         res.send(error.message)
