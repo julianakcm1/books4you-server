@@ -1,11 +1,10 @@
 const express = require('express')
 const bookRoute = require('./routes/book')
+const cors = require("cors");
 
 const app = express()
 app.use(express.json()) // reading JSON
-
-const cors = require("cors");
-app.use(cors());
+app.use(cors({origin: '*'}));
 
 const port = 8000
 
